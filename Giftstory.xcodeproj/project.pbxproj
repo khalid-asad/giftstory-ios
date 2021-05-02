@@ -8,11 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		19874B89263F34A900B172DE /* GiftstoryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19874B88263F34A900B172DE /* GiftstoryApp.swift */; };
-		19874B8B263F34A900B172DE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19874B8A263F34A900B172DE /* ContentView.swift */; };
+		19874B8B263F34A900B172DE /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19874B8A263F34A900B172DE /* LoginView.swift */; };
 		19874B8D263F34AD00B172DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19874B8C263F34AD00B172DE /* Assets.xcassets */; };
 		19874B90263F34AD00B172DE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19874B8F263F34AD00B172DE /* Preview Assets.xcassets */; };
 		19874B9B263F34AD00B172DE /* GiftstoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19874B9A263F34AD00B172DE /* GiftstoryTests.swift */; };
 		19874BA6263F34AD00B172DE /* GiftstoryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19874BA5263F34AD00B172DE /* GiftstoryUITests.swift */; };
+		19874BBD263F42A000B172DE /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19874BBC263F42A000B172DE /* RegistrationView.swift */; };
+		19874BCC263F4CBF00B172DE /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19874BCB263F4CBF00B172DE /* ForgotPasswordView.swift */; };
+		19874BD2263F4ED500B172DE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19874BD1263F4ED500B172DE /* LoginViewModel.swift */; };
+		19874BD8263F4F1000B172DE /* APIFetchState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19874BD7263F4F1000B172DE /* APIFetchState.swift */; };
+		19874BDE263F4F4B00B172DE /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19874BDD263F4F4B00B172DE /* LoginService.swift */; };
+		19874BE3263F4F9900B172DE /* APIServiceable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19874BE2263F4F9900B172DE /* APIServiceable.swift */; };
+		19874BE8263F4FAD00B172DE /* APIRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19874BE7263F4FAD00B172DE /* APIRequestable.swift */; };
+		19874BEF263F500600B172DE /* LoginRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19874BEE263F500600B172DE /* LoginRequest.swift */; };
+		19874BF8263F50D900B172DE /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19874BF7263F50D900B172DE /* Constants.swift */; };
+		19874C00263F520800B172DE /* LoginResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19874BFF263F520800B172DE /* LoginResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,7 +45,7 @@
 /* Begin PBXFileReference section */
 		19874B85263F34A900B172DE /* Giftstory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Giftstory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19874B88263F34A900B172DE /* GiftstoryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftstoryApp.swift; sourceTree = "<group>"; };
-		19874B8A263F34A900B172DE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		19874B8A263F34A900B172DE /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		19874B8C263F34AD00B172DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		19874B8F263F34AD00B172DE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		19874B91263F34AD00B172DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,6 +55,16 @@
 		19874BA1263F34AD00B172DE /* GiftstoryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiftstoryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		19874BA5263F34AD00B172DE /* GiftstoryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftstoryUITests.swift; sourceTree = "<group>"; };
 		19874BA7263F34AD00B172DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		19874BBC263F42A000B172DE /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		19874BCB263F4CBF00B172DE /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
+		19874BD1263F4ED500B172DE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		19874BD7263F4F1000B172DE /* APIFetchState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFetchState.swift; sourceTree = "<group>"; };
+		19874BDD263F4F4B00B172DE /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		19874BE2263F4F9900B172DE /* APIServiceable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServiceable.swift; sourceTree = "<group>"; };
+		19874BE7263F4FAD00B172DE /* APIRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestable.swift; sourceTree = "<group>"; };
+		19874BEE263F500600B172DE /* LoginRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRequest.swift; sourceTree = "<group>"; };
+		19874BF7263F50D900B172DE /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		19874BFF263F520800B172DE /* LoginResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,8 +115,10 @@
 		19874B87263F34A900B172DE /* Giftstory */ = {
 			isa = PBXGroup;
 			children = (
+				19874BC4263F4C1A00B172DE /* AccountServices */,
+				19874BF6263F50C900B172DE /* Localization */,
+				19874BD6263F4EF600B172DE /* Networking */,
 				19874B88263F34A900B172DE /* GiftstoryApp.swift */,
-				19874B8A263F34A900B172DE /* ContentView.swift */,
 				19874B8C263F34AD00B172DE /* Assets.xcassets */,
 				19874B91263F34AD00B172DE /* Info.plist */,
 				19874B8E263F34AD00B172DE /* Preview Content */,
@@ -128,6 +150,118 @@
 				19874BA7263F34AD00B172DE /* Info.plist */,
 			);
 			path = GiftstoryUITests;
+			sourceTree = "<group>";
+		};
+		19874BC4263F4C1A00B172DE /* AccountServices */ = {
+			isa = PBXGroup;
+			children = (
+				19874BC9263F4C7D00B172DE /* ForgotPassword */,
+				19874BC5263F4C3A00B172DE /* Login */,
+				19874BC7263F4C4B00B172DE /* Registration */,
+			);
+			path = AccountServices;
+			sourceTree = "<group>";
+		};
+		19874BC5263F4C3A00B172DE /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				19874BD0263F4EC800B172DE /* Models */,
+				19874BC6263F4C4000B172DE /* Views */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		19874BC6263F4C4000B172DE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				19874B8A263F34A900B172DE /* LoginView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		19874BC7263F4C4B00B172DE /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				19874BC8263F4C5600B172DE /* Views */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		19874BC8263F4C5600B172DE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				19874BBC263F42A000B172DE /* RegistrationView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		19874BC9263F4C7D00B172DE /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				19874BCA263F4CA700B172DE /* Views */,
+			);
+			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
+		19874BCA263F4CA700B172DE /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				19874BCB263F4CBF00B172DE /* ForgotPasswordView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		19874BD0263F4EC800B172DE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				19874BD1263F4ED500B172DE /* LoginViewModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		19874BD6263F4EF600B172DE /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				19874BEC263F4FCF00B172DE /* Protocols */,
+				19874BDC263F4F3A00B172DE /* Services */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		19874BDC263F4F3A00B172DE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				19874BED263F4FF000B172DE /* Login */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		19874BEC263F4FCF00B172DE /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				19874BD7263F4F1000B172DE /* APIFetchState.swift */,
+				19874BE7263F4FAD00B172DE /* APIRequestable.swift */,
+				19874BE2263F4F9900B172DE /* APIServiceable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		19874BED263F4FF000B172DE /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				19874BEE263F500600B172DE /* LoginRequest.swift */,
+				19874BFF263F520800B172DE /* LoginResponse.swift */,
+				19874BDD263F4F4B00B172DE /* LoginService.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		19874BF6263F50C900B172DE /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				19874BF7263F50D900B172DE /* Constants.swift */,
+			);
+			path = Localization;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,8 +393,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19874B8B263F34A900B172DE /* ContentView.swift in Sources */,
+				19874BBD263F42A000B172DE /* RegistrationView.swift in Sources */,
+				19874BF8263F50D900B172DE /* Constants.swift in Sources */,
+				19874C00263F520800B172DE /* LoginResponse.swift in Sources */,
+				19874B8B263F34A900B172DE /* LoginView.swift in Sources */,
+				19874BCC263F4CBF00B172DE /* ForgotPasswordView.swift in Sources */,
+				19874BEF263F500600B172DE /* LoginRequest.swift in Sources */,
+				19874BD2263F4ED500B172DE /* LoginViewModel.swift in Sources */,
+				19874BE8263F4FAD00B172DE /* APIRequestable.swift in Sources */,
 				19874B89263F34A900B172DE /* GiftstoryApp.swift in Sources */,
+				19874BD8263F4F1000B172DE /* APIFetchState.swift in Sources */,
+				19874BE3263F4F9900B172DE /* APIServiceable.swift in Sources */,
+				19874BDE263F4F4B00B172DE /* LoginService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
