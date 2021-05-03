@@ -11,6 +11,8 @@ enum Constants: String {
     case baseURL
     case authenticationPath
     case loginPath
+    case forgotPasswordPath
+    case registerAccountPath
     
     var rawValue: String {
         switch self {
@@ -20,6 +22,10 @@ enum Constants: String {
             return "user/"
         case .loginPath:
             return "login"
+        case .forgotPasswordPath:
+            return "forgotPassword"
+        case .registerAccountPath:
+            return "register"
         }
     }
 }

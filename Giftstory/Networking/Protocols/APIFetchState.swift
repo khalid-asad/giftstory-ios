@@ -11,13 +11,14 @@ enum APIFetchState<T: Decodable> {
     case idle
     case noResultsFound
     case loading
-    case success([T])
+    case success(T)
     case failure(APIError)
 }
 
 enum APIError: LocalizedError {
     case decodingError
     case errorCode(Int)
+    case errorMessage(String)
     case invalidRequest
     case invalidURL
     case unknown
@@ -28,6 +29,8 @@ enum APIError: LocalizedError {
             return "Unable to decode JSON."
         case .errorCode(let code):
             return "REST API returned code \(code)"
+        case .errorMessage(let message):
+            return message
         case .invalidRequest:
             return "The request was invalid."
         case .invalidURL:

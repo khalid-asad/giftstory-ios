@@ -7,28 +7,12 @@
 
 import SwiftUI
 
-extension Date {
-    
-    /// Converts a Date of format yyyy-MM-dd into a String of day/month/year format.
-    func toStringSlashedDMY() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        return dateFormatter.string(from: self)
-    }
-}
-
-extension String {
-    
-    /// Converts a string to Date format of yyyy-MM-dd.
-    var toDate: Date? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
-        return dateFormatter.date(from: self)
-    }
-}
-
 struct RegistrationView: View {
+    @ObservedObject var viewModel: RegistrationViewModel
+
     @State var color = Color.black.opacity(0.7)
+    @State var firstName = ""
+    @State var lastName = ""
     @State var email = ""
     @State var dateOfBirth = Date()
     @State var password = ""
@@ -36,6 +20,10 @@ struct RegistrationView: View {
     @State var isDatePickerVisible = false
     @State var isPasswordVisible = false
     @State var isConfirmPasswordVisible = false
+    @State var isLoading = false
+    @State var alert = false
+    @State var alertTitle = ""
+    @State var alertMessage = ""
     
     let dateFormatter: DateFormatter = {
         let df = DateFormatter()
@@ -51,9 +39,19 @@ struct RegistrationView: View {
                 .foregroundColor(color)
                 .padding()
             
+            TextField("First Name", text: $firstName)
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 4).stroke(firstNameFieldColor, lineWidth: 2))
+                .padding(.top, 25)
+            
+            TextField("Last Name", text: $lastName)
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 4).stroke(lastNameFieldColor, lineWidth: 2))
+                .padding(.top, 25)
+            
             TextField("E-mail", text: $email)
                 .padding()
-                .background(RoundedRectangle(cornerRadius: 4).stroke(email != "" ? .red : color, lineWidth: 2))
+                .background(RoundedRectangle(cornerRadius: 4).stroke(emailFieldColor, lineWidth: 2))
                 .padding(.top, 25)
             
             let bind = Binding<String>(
@@ -107,7 +105,7 @@ struct RegistrationView: View {
                 }
             }
             .padding()
-            .background(RoundedRectangle(cornerRadius: 4).stroke(password != "" ? .red : color, lineWidth: 2))
+            .background(RoundedRectangle(cornerRadius: 4).stroke(passwordFieldColor, lineWidth: 2))
             .padding(.top, 25)
             
             HStack(spacing: 15) {
@@ -126,27 +124,107 @@ struct RegistrationView: View {
                 }
             }
             .padding()
-            .background(RoundedRectangle(cornerRadius: 4).stroke(confirmPassword != "" ? .red : color, lineWidth: 2))
+            .background(RoundedRectangle(cornerRadius: 4).stroke(confirmPasswordFieldColor, lineWidth: 2))
             .padding(.top, 25)
                         
             Button(action: {
-                
+                submitRegistrationInfo()
             }) {
                 Text("Register")
                     .foregroundColor(.white)
                     .padding(.vertical)
                     .frame(width: UIScreen.main.bounds.width - 50)
-                    .background(Color.red)
+                    .background(isButtonEnabled ? Color.red : Color.red.opacity(0.5))
                     .cornerRadius(10)
                     .padding(.top, 30)
             }
+            .disabled(!isButtonEnabled)
         }
         .padding(.horizontal, 30)
+        .alert(isPresented: $alert) {
+            Alert(title: Text(alertTitle), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+        }
+    }
+    
+    var isButtonEnabled: Bool {
+        firstName.count >= 2 && lastName.count >= 2 && email.isValidEmail && !email.isEmpty && password.count >= 8 && confirmPassword.count >= 8
+    }
+    
+    var firstNameFieldColor: Color {
+        if firstName.isEmpty {
+            return color
+        } else if firstName.count < 2 {
+            return .red
+        } else {
+            return Color.green.opacity(0.6)
+        }
+    }
+    
+    var lastNameFieldColor: Color {
+        if lastName.isEmpty {
+            return color
+        } else if lastName.count < 2 {
+            return .red
+        } else {
+            return Color.green.opacity(0.6)
+        }
+    }
+    
+    var emailFieldColor: Color {
+        if email.isEmpty {
+            return color
+        } else if !email.isValidEmail {
+            return .red
+        } else {
+            return Color.green.opacity(0.6)
+        }
+    }
+    
+    var passwordFieldColor: Color {
+        if password.isEmpty {
+            return color
+        } else if password.count < 8 {
+            return .red
+        } else {
+            return Color.green.opacity(0.6)
+        }
+    }
+    
+    var confirmPasswordFieldColor: Color {
+        if confirmPassword.isEmpty {
+            return color
+        } else if confirmPassword.count < 8 || confirmPassword != password {
+            return .red
+        } else {
+            return Color.green.opacity(0.6)
+        }
+    }
+    
+    func submitRegistrationInfo() {
+        isLoading = true
+        viewModel.registerAccount(firstName: firstName, lastName: lastName, email: email.lowercased(), password: password, birthday: dateOfBirth) { state in
+            isLoading = false
+            switch state {
+            case .failure(let apiError):
+                alertTitle = "Error"
+                if case .errorMessage(let errorMessage) = apiError {
+                    alertMessage = errorMessage
+                } else {
+                    alertMessage = "Sorry, something went wrong. Please try again later."
+                }
+                alert.toggle()
+            case .success(let response):
+                alertTitle = "Success!"
+                alertMessage = response.message ?? "Check your e-mail for the registration link!"
+                alert.toggle()
+            default: break
+            }
+        }
     }
 }
 
 struct RegistrationView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationView()
+        RegistrationView(viewModel: .init())
     }
 }

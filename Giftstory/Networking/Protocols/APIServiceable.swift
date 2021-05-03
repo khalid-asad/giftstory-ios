@@ -12,13 +12,13 @@ import Foundation
 protocol APIServiceable {
         
     /// Generic Implementation
-    func load<T: Decodable>(request: APIRequestable) -> AnyPublisher<[T], APIError>
+    func load<T: Decodable>(request: APIRequestable) -> AnyPublisher<T, APIError>
 }
 
 extension APIServiceable {
     
     /// Generic Implementation
-    func load<T>(request: APIRequestable) -> AnyPublisher<[T], APIError> where T: Decodable {
+    func load<T>(request: APIRequestable) -> AnyPublisher<T, APIError> where T: Decodable {
         fetch(request: request)
     }
     
@@ -34,12 +34,16 @@ extension APIServiceable {
                 guard let response = response as? HTTPURLResponse else {
                     return Fail(error: .unknown).eraseToAnyPublisher()
                 }
+                let decoder = JSONDecoder()
                 if (200...299).contains(response.statusCode) {
                     return Just(data)
-                        .decode(type: T.self, decoder: JSONDecoder())
+                        .decode(type: T.self, decoder: decoder)
                         .mapError { _ in .decodingError }
                         .eraseToAnyPublisher()
                 } else {
+                    if let apiResponse = try? decoder.decode(APIResponse.self, from: data) {
+                        return Fail(error: .errorMessage(apiResponse.error ?? "")).eraseToAnyPublisher()
+                    }
                     return Fail(error: .errorCode(response.statusCode)).eraseToAnyPublisher()
                 }
             }

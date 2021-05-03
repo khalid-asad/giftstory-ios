@@ -17,7 +17,7 @@ enum HTTPMethod: String, Codable, Equatable, Hashable {
 // MARK: - API Requestable Protocol
 protocol APIRequestable {
     
-    var body: [String: Any]? { get }
+    var body: Data? { get }
     var headers: [String: String] { get }
     var httpMethod: HTTPMethod { get }
     var urlString: String { get }
@@ -25,7 +25,7 @@ protocol APIRequestable {
 
 extension APIRequestable {
     
-    var body: [String: Any]? { nil }
+    var body: Data? { nil }
 
     var headers: [String: String] { [:] }
     
@@ -35,18 +35,16 @@ extension APIRequestable {
         var request = URLRequest(url: url)
         request.httpMethod = httpMethod.rawValue
         
-        if httpMethod == .post {
-            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-            request.setValue("application/json", forHTTPHeaderField: "Accept")
+        if [.post, .put, .delete].contains(httpMethod) {
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         }
         
         headers.forEach { (key, value) in
             request.addValue(value, forHTTPHeaderField: key)
         }
         
-        if let body = body,
-            let httpBody = try? JSONSerialization.data(withJSONObject: body) {
-            request.httpBody = httpBody
+        if let body = body {
+           request.httpBody = body
         }
         
         return request

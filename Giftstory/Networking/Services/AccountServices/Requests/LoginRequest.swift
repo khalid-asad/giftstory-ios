@@ -12,11 +12,12 @@ struct LoginRequest: APIRequestable {
     var email: String
     var password: String
     
-    var body: [String: Any]? {
-        [
-            "email": email,
-            "password": password
-        ]
+    var body: Data? {
+        struct LoginRequestBody: Codable {
+            let email: String
+            let password: String
+        }
+        return try? JSONEncoder().encode(LoginRequestBody(email: email, password: password))
     }
     
     var httpMethod: HTTPMethod { .post }
