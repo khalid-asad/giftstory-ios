@@ -27,6 +27,9 @@ struct LoginView: View {
                 } else {
                     ZStack(alignment: .topTrailing) {
                         VStack {
+                            LottieView(name: "4432-face-scanning", loopMode: .loop)
+                                .frame(width: 200, height: 200)
+
                             Text("Log in to your account")
                                 .font(.title)
                                 .fontWeight(.bold)
