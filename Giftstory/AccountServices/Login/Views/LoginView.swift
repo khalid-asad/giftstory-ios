@@ -19,81 +19,86 @@ struct LoginView: View {
     @State var error = ""
     
     var body: some View {
-        ZStack {
-            if isLoading {
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle())
-            } else {
-                ZStack(alignment: .topTrailing) {
-                    VStack {
-                        Text("Log in to your account")
-                            .font(.title)
-                            .fontWeight(.bold)
-                            .foregroundColor(color)
-                            .padding()
-                        
-                        TextField("E-mail", text: $email)
-                            .padding()
-                            .background(RoundedRectangle(cornerRadius: 4).stroke(emailFieldColor, lineWidth: 2))
-                            .padding(.top, 25)
-                        
-                        HStack(spacing: 15) {
-                            VStack {
-                                if isPasswordVisible {
-                                    TextField("Password", text: $password)
-                                } else {
-                                    SecureField("Password", text: $password)
+        ScrollView {
+            ZStack {
+                if isLoading {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                } else {
+                    ZStack(alignment: .topTrailing) {
+                        VStack {
+                            Text("Log in to your account")
+                                .font(.title)
+                                .fontWeight(.bold)
+                                .foregroundColor(color)
+                                .padding()
+                            
+                            TextField("E-mail", text: $email)
+                                .padding()
+                                .autocapitalization(.none)
+                                .background(RoundedRectangle(cornerRadius: 4).stroke(emailFieldColor, lineWidth: 2))
+                                .padding(.top, 25)
+                            
+                            HStack(spacing: 15) {
+                                VStack {
+                                    if isPasswordVisible {
+                                        TextField("Password", text: $password)
+                                            .autocapitalization(.none)
+                                    } else {
+                                        SecureField("Password", text: $password)
+                                            .autocapitalization(.none)
+                                    }
+                                }
+                                
+                                Button(action: {
+                                    isPasswordVisible.toggle()
+                                }) {
+                                    Image(systemName: isPasswordVisible ? "eye.slash.fill" : "eye.fill")
+                                        .foregroundColor(color)
                                 }
                             }
+                            .padding()
+                            .background(RoundedRectangle(cornerRadius: 4).stroke(passwordFieldColor, lineWidth: 2))
+                            .padding(.top, 25)
+                            
+                            HStack {
+                                Spacer()
+                                NavigationLink(destination: ForgotPasswordView(viewModel: .init())) {
+                                    Text("Forgot password?")
+                                        .fontWeight(.bold)
+                                        .foregroundColor(.blue)
+                                }
+                            }
+                            .padding(.top, 20)
+                            
+                            HStack {
+                                Spacer()
+                                NavigationLink(destination: RegistrationView(viewModel: .init())) {
+                                    Text("Not registered? Sign up now")
+                                        .fontWeight(.bold)
+                                        .foregroundColor(.blue)
+                                }
+                            }
+                            .padding(.top, 20)
                             
                             Button(action: {
-                                isPasswordVisible.toggle()
+                                validateFields()
                             }) {
-                                Image(systemName: isPasswordVisible ? "eye.slash.fill" : "eye.fill")
-                                    .foregroundColor(color)
+                                Text("Login")
+                                    .foregroundColor(.white)
+                                    .padding(.vertical)
+                                    .frame(width: UIScreen.main.bounds.width - 50)
+                                    .background(isButtonEnabled ? Color.red : Color.red.opacity(0.5))
+                                    .cornerRadius(10)
+                                    .padding(.top, 30)
                             }
+                            .disabled(!isButtonEnabled)
                         }
-                        .padding()
-                        .background(RoundedRectangle(cornerRadius: 4).stroke(passwordFieldColor, lineWidth: 2))
-                        .padding(.top, 25)
-
-                        HStack {
-                            Spacer()
-                            NavigationLink(destination: ForgotPasswordView(viewModel: .init())) {
-                                Text("Forgot password?")
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.blue)
-                            }
-                        }
-                        .padding(.top, 20)
-                        
-                        HStack {
-                            Spacer()
-                            NavigationLink(destination: RegistrationView(viewModel: .init())) {
-                                Text("Not registered? Sign up now")
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.blue)
-                            }
-                        }
-                        .padding(.top, 20)
-                        
-                        Button(action: {
-                            validateFields()
-                        }) {
-                            Text("Login")
-                                .foregroundColor(.white)
-                                .padding(.vertical)
-                                .frame(width: UIScreen.main.bounds.width - 50)
-                                .background(isButtonEnabled ? Color.red : Color.red.opacity(0.5))
-                                .cornerRadius(10)
-                                .padding(.top, 30)
-                        }
-                        .disabled(!isButtonEnabled)
+                        .padding(.horizontal, 30)
                     }
-                    .padding(.horizontal, 30)
-                }
-                .alert(isPresented: $alert) {
-                    Alert(title: Text("Error"), message: Text(error), dismissButton: .default(Text("OK")))
+                    .alert(isPresented: $alert) {
+                        Alert(title: Text("Error"), message: Text(error), dismissButton: .default(Text("OK")))
+                    }
                 }
             }
         }

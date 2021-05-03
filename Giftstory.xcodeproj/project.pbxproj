@@ -30,6 +30,7 @@
 		19874C40263FA53500B172DE /* ForgotPasswordViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19874C3F263FA53500B172DE /* ForgotPasswordViewModel.swift */; };
 		19874C46263FA98200B172DE /* RegistrationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19874C45263FA98200B172DE /* RegistrationViewModel.swift */; };
 		19874C4E263FA9CB00B172DE /* AccountRegistrationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19874C4D263FA9CB00B172DE /* AccountRegistrationRequest.swift */; };
+		19874C56263FC3EB00B172DE /* Binding+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19874C55263FC3EB00B172DE /* Binding+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		19874C3F263FA53500B172DE /* ForgotPasswordViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewModel.swift; sourceTree = "<group>"; };
 		19874C45263FA98200B172DE /* RegistrationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewModel.swift; sourceTree = "<group>"; };
 		19874C4D263FA9CB00B172DE /* AccountRegistrationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRegistrationRequest.swift; sourceTree = "<group>"; };
+		19874C55263FC3EB00B172DE /* Binding+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,6 +287,7 @@
 		19874C1E263F86BA00B172DE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				19874C55263FC3EB00B172DE /* Binding+Extensions.swift */,
 				19874C1F263F86E600B172DE /* Date+Extensions.swift */,
 				19874C27263F86FC00B172DE /* String+Extensions.swift */,
 			);
@@ -451,6 +454,7 @@
 				19874BF8263F50D900B172DE /* Constants.swift in Sources */,
 				19874C08263F60E100B172DE /* HomeView.swift in Sources */,
 				19874C34263FA47100B172DE /* ForgotPasswordRequest.swift in Sources */,
+				19874C56263FC3EB00B172DE /* Binding+Extensions.swift in Sources */,
 				19874C00263F520800B172DE /* APIResponse.swift in Sources */,
 				19874C4E263FA9CB00B172DE /* AccountRegistrationRequest.swift in Sources */,
 				19874B8B263F34A900B172DE /* LoginView.swift in Sources */,
