@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		190F13F3264096070041635F /* Color+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 190F13F2264096070041635F /* Color+Extensions.swift */; };
 		19874B89263F34A900B172DE /* GiftstoryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19874B88263F34A900B172DE /* GiftstoryApp.swift */; };
 		19874B8B263F34A900B172DE /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19874B8A263F34A900B172DE /* LoginView.swift */; };
 		19874B8D263F34AD00B172DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19874B8C263F34AD00B172DE /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 		19874C5F263FC72C00B172DE /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 19874C5E263FC72C00B172DE /* Lottie */; };
 		19874C68263FC7B600B172DE /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19874C67263FC7B600B172DE /* LottieView.swift */; };
 		19874C76263FCB5300B172DE /* 4432-face-scanning.json in Resources */ = {isa = PBXBuildFile; fileRef = 19874C75263FCB5300B172DE /* 4432-face-scanning.json */; };
+		19874C7E264084CE00B172DE /* 33423-happy-giftbox.json in Resources */ = {isa = PBXBuildFile; fileRef = 19874C7D264084CE00B172DE /* 33423-happy-giftbox.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		190F13F2264096070041635F /* Color+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extensions.swift"; sourceTree = "<group>"; };
 		19874B85263F34A900B172DE /* Giftstory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Giftstory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19874B88263F34A900B172DE /* GiftstoryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GiftstoryApp.swift; sourceTree = "<group>"; };
 		19874B8A263F34A900B172DE /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -86,6 +89,7 @@
 		19874C55263FC3EB00B172DE /* Binding+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+Extensions.swift"; sourceTree = "<group>"; };
 		19874C67263FC7B600B172DE /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		19874C75263FCB5300B172DE /* 4432-face-scanning.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "4432-face-scanning.json"; sourceTree = "<group>"; };
+		19874C7D264084CE00B172DE /* 33423-happy-giftbox.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "33423-happy-giftbox.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -295,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				19874C55263FC3EB00B172DE /* Binding+Extensions.swift */,
+				190F13F2264096070041635F /* Color+Extensions.swift */,
 				19874C1F263F86E600B172DE /* Date+Extensions.swift */,
 				19874C27263F86FC00B172DE /* String+Extensions.swift */,
 			);
@@ -331,6 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				19874C75263FCB5300B172DE /* 4432-face-scanning.json */,
+				19874C7D264084CE00B172DE /* 33423-happy-giftbox.json */,
 				19874C67263FC7B600B172DE /* LottieView.swift */,
 			);
 			path = Lottie;
@@ -447,6 +453,7 @@
 			files = (
 				19874C76263FCB5300B172DE /* 4432-face-scanning.json in Resources */,
 				19874B90263F34AD00B172DE /* Preview Assets.xcassets in Resources */,
+				19874C7E264084CE00B172DE /* 33423-happy-giftbox.json in Resources */,
 				19874B8D263F34AD00B172DE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,6 +488,7 @@
 				19874C00263F520800B172DE /* APIResponse.swift in Sources */,
 				19874C4E263FA9CB00B172DE /* AccountRegistrationRequest.swift in Sources */,
 				19874B8B263F34A900B172DE /* LoginView.swift in Sources */,
+				190F13F3264096070041635F /* Color+Extensions.swift in Sources */,
 				19874BCC263F4CBF00B172DE /* ForgotPasswordView.swift in Sources */,
 				19874BEF263F500600B172DE /* LoginRequest.swift in Sources */,
 				19874C68263FC7B600B172DE /* LottieView.swift in Sources */,

@@ -9,14 +9,16 @@ import SwiftUI
 
 struct LoginView: View {
     @ObservedObject var viewModel: LoginViewModel
-    
-    @State var color = Color.black.opacity(0.7)
+        
+    @State var color = Color.primaryColor
     @State var email = ""
     @State var password = ""
     @State var isPasswordVisible = false
     @State var isLoading = false
     @State var alert = false
     @State var error = ""
+    @State var isPresentingForgotPasswordSheet = false
+    @State var isPresentingRegistrationSheet = false
     
     var body: some View {
         ScrollView {
@@ -27,7 +29,7 @@ struct LoginView: View {
                 } else {
                     ZStack(alignment: .topTrailing) {
                         VStack {
-                            LottieView(name: "4432-face-scanning", loopMode: .loop)
+                            LottieView(name: "33423-happy-giftbox", loopMode: .loop)
                                 .frame(width: 200, height: 200)
 
                             Text("Log in to your account")
@@ -66,21 +68,25 @@ struct LoginView: View {
                             
                             HStack {
                                 Spacer()
-                                NavigationLink(destination: ForgotPasswordView(viewModel: .init())) {
+                                Button(action: {
+                                    isPresentingForgotPasswordSheet.toggle()
+                                }, label: {
                                     Text("Forgot password?")
                                         .fontWeight(.bold)
                                         .foregroundColor(.blue)
-                                }
+                                })
                             }
                             .padding(.top, 20)
                             
                             HStack {
                                 Spacer()
-                                NavigationLink(destination: RegistrationView(viewModel: .init())) {
+                                Button(action: {
+                                    isPresentingRegistrationSheet.toggle()
+                                }, label: {
                                     Text("Not registered? Sign up now")
                                         .fontWeight(.bold)
                                         .foregroundColor(.blue)
-                                }
+                                })
                             }
                             .padding(.top, 20)
                             
@@ -102,9 +108,18 @@ struct LoginView: View {
                     .alert(isPresented: $alert) {
                         Alert(title: Text("Error"), message: Text(error), dismissButton: .default(Text("OK")))
                     }
+                    .sheet(isPresented: $isPresentingForgotPasswordSheet) {
+                        ForgotPasswordView(viewModel: .init())
+                    }
+                    .sheet(isPresented: $isPresentingRegistrationSheet) {
+                        RegistrationView(viewModel: .init())
+                    }
                 }
             }
+            .padding(.top, 100)
         }
+        .background(Color.backgroundColor)
+        .edgesIgnoringSafeArea(.all)
     }
     
     var isButtonEnabled: Bool {

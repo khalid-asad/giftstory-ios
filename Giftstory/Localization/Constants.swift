@@ -17,7 +17,7 @@ enum Constants: String {
     var rawValue: String {
         switch self {
         case .baseURL:
-            return "https://giftstory-js.herokuapp.com/api/"
+            return "http://www.giftstory.xyz/api/"
         case .authenticationPath:
             return "user/"
         case .loginPath:
