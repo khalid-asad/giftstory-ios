@@ -7,6 +7,13 @@
 
 import SwiftUI
 
+enum LoginSheets: Identifiable {
+    case forgotPassword
+    case registration
+    
+    var id: Int { hashValue }
+}
+
 struct LoginView: View {
     @ObservedObject var viewModel: LoginViewModel
         
@@ -17,8 +24,7 @@ struct LoginView: View {
     @State var isLoading = false
     @State var alert = false
     @State var error = ""
-    @State var isPresentingForgotPasswordSheet = false
-    @State var isPresentingRegistrationSheet = false
+    @State var presentedSheet: LoginSheets?
     
     var body: some View {
         ScrollView {
@@ -69,7 +75,7 @@ struct LoginView: View {
                             HStack {
                                 Spacer()
                                 Button(action: {
-                                    isPresentingForgotPasswordSheet.toggle()
+                                    presentedSheet = .forgotPassword
                                 }, label: {
                                     Text("Forgot password?")
                                         .fontWeight(.bold)
@@ -81,7 +87,7 @@ struct LoginView: View {
                             HStack {
                                 Spacer()
                                 Button(action: {
-                                    isPresentingRegistrationSheet.toggle()
+                                    presentedSheet = .registration
                                 }, label: {
                                     Text("Not registered? Sign up now")
                                         .fontWeight(.bold)
@@ -108,11 +114,13 @@ struct LoginView: View {
                     .alert(isPresented: $alert) {
                         Alert(title: Text("Error"), message: Text(error), dismissButton: .default(Text("OK")))
                     }
-                    .sheet(isPresented: $isPresentingForgotPasswordSheet) {
-                        ForgotPasswordView(viewModel: .init())
-                    }
-                    .sheet(isPresented: $isPresentingRegistrationSheet) {
-                        RegistrationView(viewModel: .init())
+                    .sheet(item: $presentedSheet) { item in
+                        switch item {
+                        case .forgotPassword:
+                            ForgotPasswordView(viewModel: .init())
+                        case .registration:
+                            RegistrationView(viewModel: .init())
+                        }
                     }
                 }
             }
