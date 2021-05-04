@@ -10,7 +10,9 @@ import SwiftUI
 struct RegistrationView: View {
     @ObservedObject var viewModel: RegistrationViewModel
     
-    @State var color = Color.black.opacity(0.7)
+    @Environment(\.presentationMode) var presentationMode
+    
+    @State var color = Color.primaryColor
     @State var firstName = ""
     @State var lastName = ""
     @State var email = ""
@@ -31,105 +33,118 @@ struct RegistrationView: View {
     }()
     
     var body: some View {
-        ScrollView {
-            VStack {
-                Text("Register with Giftstory")
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .foregroundColor(color)
-                    .padding()
-                
-                TextField("First Name", text: $firstName)
-                    .padding()
-                    .autocapitalization(.words)
-                    .background(RoundedRectangle(cornerRadius: 4).stroke(firstNameFieldColor, lineWidth: 2))
-                    .padding(.top, 25)
-                
-                TextField("Last Name", text: $lastName)
-                    .padding()
-                    .autocapitalization(.words)
-                    .background(RoundedRectangle(cornerRadius: 4).stroke(lastNameFieldColor, lineWidth: 2))
-                    .padding(.top, 25)
-                
-                TextField("E-mail", text: $email)
-                    .padding()
-                    .autocapitalization(.none)
-                    .background(RoundedRectangle(cornerRadius: 4).stroke(emailFieldColor, lineWidth: 2))
-                    .padding(.top, 25)
-                
+        NavigationView {
+            ScrollView {
                 VStack {
-                    HStack {
-                        Text("Date of Birth")
-                            .padding(.leading, 8)
-                        Spacer()
-                        DatePicker("", selection: Binding($dateOfBirth, replacingNilWith: Date()), in: dateClosedRange, displayedComponents: .date)
-                            .datePickerStyle(DefaultDatePickerStyle())
-                            .padding(EdgeInsets(top: 2, leading: 10, bottom: 2, trailing: 10))
-                    }
-                    .padding(.top, 10)
-                    .padding(.bottom, 10)
-                }
-                .background(RoundedRectangle(cornerRadius: 4).stroke(birthdayFieldColor, lineWidth: 2))
-                .padding(.top, 25)
-                
-                HStack(spacing: 15) {
+                    Text("Register with Giftstory")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(color)
+                        .padding()
+                    
+                    TextField("First Name", text: $firstName)
+                        .padding()
+                        .autocapitalization(.words)
+                        .background(RoundedRectangle(cornerRadius: 4).stroke(firstNameFieldColor, lineWidth: 2))
+                        .padding(.top, 25)
+                    
+                    TextField("Last Name", text: $lastName)
+                        .padding()
+                        .autocapitalization(.words)
+                        .background(RoundedRectangle(cornerRadius: 4).stroke(lastNameFieldColor, lineWidth: 2))
+                        .padding(.top, 25)
+                    
+                    TextField("E-mail", text: $email)
+                        .padding()
+                        .autocapitalization(.none)
+                        .background(RoundedRectangle(cornerRadius: 4).stroke(emailFieldColor, lineWidth: 2))
+                        .padding(.top, 25)
+                    
                     VStack {
-                        if isPasswordVisible {
-                            TextField("Password", text: $password)
-                                .autocapitalization(.none)
-                        } else {
-                            SecureField("Password", text: $password)
-                                .autocapitalization(.none)
+                        HStack {
+                            Text("Date of Birth")
+                                .padding(.leading, 16)
+                                .foregroundColor(Color(UIColor.lightGray.withAlphaComponent(0.8)))
+                            Spacer()
+                            DatePicker("", selection: Binding($dateOfBirth, replacingNilWith: Date()), in: dateClosedRange, displayedComponents: .date)
+                                .datePickerStyle(DefaultDatePickerStyle())
+                                .padding(EdgeInsets(top: 2, leading: 10, bottom: 2, trailing: 10))
+                        }
+                        .padding(.top, 10)
+                        .padding(.bottom, 10)
+                    }
+                    .background(RoundedRectangle(cornerRadius: 4).stroke(birthdayFieldColor, lineWidth: 2))
+                    .padding(.top, 25)
+                    
+                    HStack(spacing: 15) {
+                        VStack {
+                            if isPasswordVisible {
+                                TextField("Password", text: $password)
+                                    .autocapitalization(.none)
+                            } else {
+                                SecureField("Password", text: $password)
+                                    .autocapitalization(.none)
+                            }
+                        }
+                        Button(action: {
+                            isPasswordVisible.toggle()
+                        }) {
+                            Image(systemName: isPasswordVisible ? "eye.slash.fill" : "eye.fill")
+                                .foregroundColor(color)
                         }
                     }
-                    Button(action: {
-                        isPasswordVisible.toggle()
-                    }) {
-                        Image(systemName: isPasswordVisible ? "eye.slash.fill" : "eye.fill")
-                            .foregroundColor(color)
-                    }
-                }
-                .padding()
-                .background(RoundedRectangle(cornerRadius: 4).stroke(passwordFieldColor, lineWidth: 2))
-                .padding(.top, 25)
-                
-                HStack(spacing: 15) {
-                    VStack {
-                        if isConfirmPasswordVisible {
-                            TextField("Confirm Password", text: $confirmPassword)
-                                .autocapitalization(.none)
-                        } else {
-                            SecureField("Confirm Password", text: $confirmPassword)
-                                .autocapitalization(.none)
+                    .padding()
+                    .background(RoundedRectangle(cornerRadius: 4).stroke(passwordFieldColor, lineWidth: 2))
+                    .padding(.top, 25)
+                    
+                    HStack(spacing: 15) {
+                        VStack {
+                            if isConfirmPasswordVisible {
+                                TextField("Confirm Password", text: $confirmPassword)
+                                    .autocapitalization(.none)
+                            } else {
+                                SecureField("Confirm Password", text: $confirmPassword)
+                                    .autocapitalization(.none)
+                            }
+                        }
+                        Button(action: {
+                            isConfirmPasswordVisible.toggle()
+                        }) {
+                            Image(systemName: isConfirmPasswordVisible ? "eye.slash.fill" : "eye.fill")
+                                .foregroundColor(color)
                         }
                     }
+                    .padding()
+                    .background(RoundedRectangle(cornerRadius: 4).stroke(confirmPasswordFieldColor, lineWidth: 2))
+                    .padding(.top, 25)
+                    
                     Button(action: {
-                        isConfirmPasswordVisible.toggle()
+                        submitRegistrationInfo()
                     }) {
-                        Image(systemName: isConfirmPasswordVisible ? "eye.slash.fill" : "eye.fill")
-                            .foregroundColor(color)
+                        Text("Register")
+                            .foregroundColor(.white)
+                            .padding(.vertical)
+                            .frame(width: UIScreen.main.bounds.width - 50)
+                            .background(isButtonEnabled ? Color.red : Color.red.opacity(0.5))
+                            .cornerRadius(10)
+                            .padding(.top, 30)
                     }
+                    .disabled(!isButtonEnabled)
                 }
-                .padding()
-                .background(RoundedRectangle(cornerRadius: 4).stroke(confirmPasswordFieldColor, lineWidth: 2))
-                .padding(.top, 25)
-                
-                Button(action: {
-                    submitRegistrationInfo()
-                }) {
-                    Text("Register")
-                        .foregroundColor(.white)
-                        .padding(.vertical)
-                        .frame(width: UIScreen.main.bounds.width - 50)
-                        .background(isButtonEnabled ? Color.red : Color.red.opacity(0.5))
-                        .cornerRadius(10)
-                        .padding(.top, 30)
+                .padding(.top, 100)
+                .padding(.horizontal, 30)
+                .alert(isPresented: $alert) {
+                    Alert(title: Text(alertTitle), message: Text(alertMessage), dismissButton: .default(Text("OK")))
                 }
-                .disabled(!isButtonEnabled)
             }
-            .padding(.horizontal, 30)
-            .alert(isPresented: $alert) {
-                Alert(title: Text(alertTitle), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+            .background(Color.backgroundColor)
+            .edgesIgnoringSafeArea(.all)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Cancel") {
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
             }
         }
     }

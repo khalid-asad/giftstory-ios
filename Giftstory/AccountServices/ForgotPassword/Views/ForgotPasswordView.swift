@@ -10,7 +10,9 @@ import SwiftUI
 struct ForgotPasswordView: View {
     @ObservedObject var viewModel: ForgotPasswordViewModel
     
-    @State var color = Color.black.opacity(0.7)
+    @Environment(\.presentationMode) var presentationMode
+    
+    @State var color = Color.primaryColor
     @State var email = ""
     @State var isLoading = false
     @State var alert = false
@@ -50,9 +52,19 @@ struct ForgotPasswordView: View {
                         }
                         .disabled(!isButtonEnabled)
                     }
+                    .padding(.top, 160)
                     .padding(.horizontal, 30)
                     .alert(isPresented: $alert) {
                         Alert(title: Text(alertTitle), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+                    }
+                }
+            }
+            .background(Color.backgroundColor)
+            .edgesIgnoringSafeArea(.all)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Cancel") {
+                        presentationMode.wrappedValue.dismiss()
                     }
                 }
             }
